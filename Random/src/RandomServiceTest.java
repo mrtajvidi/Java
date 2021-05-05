@@ -18,4 +18,23 @@ public class RandomServiceTest {
         Assert.assertTrue(Arrays.equals(expectedOutput, actualOutput));
     }
 
+    @Test
+    public void isSameTreeRecursion_True() {
+
+        var p = new TreeNode(1, new TreeNode(2), new TreeNode(1));
+        var q = new TreeNode(1, new TreeNode(2), new TreeNode(1));
+        var actualOutput = _randomService.isSameTreeRecursion(p, q);
+        Assert.assertTrue(actualOutput);
+    }
+
+    @Test
+    public void isSameTreeRecursion_False() {
+
+        var p = new TreeNode(1, new TreeNode(1), new TreeNode(2));
+        var q = new TreeNode(1, new TreeNode(2), new TreeNode(1));
+        var actualOutput = _randomService.isSameTreeRecursion(p, q);
+        Assert.assertFalse(actualOutput);
+    }
+
+
 }

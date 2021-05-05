@@ -28,4 +28,18 @@ public class RandomService {
         }
         return output.stream().mapToInt(i -> i).toArray();
     }
+
+    public boolean isSameTreeRecursion(TreeNode p, TreeNode q) {
+        if (p == null && q == null) return true;
+
+        if ((p == null && q != null) || (p != null && q == null)) return false;
+
+        if (p.val == q.val) {
+            return isSameTreeRecursion(p.left, q.left) && isSameTreeRecursion(p.right, q.right);
+        }
+        return false;
+    }
+
+    
+
 }
