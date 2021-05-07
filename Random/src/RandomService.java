@@ -1,4 +1,7 @@
 import java.util.ArrayList;
+import java.util.Deque;
+import java.util.*;
+
 
 public class RandomService {
 
@@ -40,6 +43,41 @@ public class RandomService {
         return false;
     }
 
-    
+    public boolean isSameTreeIteration(TreeNode p, TreeNode q) {
+        if (p == null && q == null) return true;
+
+        if ((p == null && q != null) || (p != null && q == null)) return false;
+
+       // Deque<TreeNode> queueP = new <>();
+
+        if (p.val == q.val) {
+            return isSameTreeRecursion(p.left, q.left) && isSameTreeRecursion(p.right, q.right);
+        }
+        return false;
+    }
+
+
+    public List<Integer> inorderTraversalRecursion(TreeNode root) {
+        List<Integer> output = new ArrayList<Integer>();
+
+        if (root == null)
+        {
+            return output;
+        }
+
+        if (root.left != null)
+        {
+            output.addAll(inorderTraversalRecursion(root.left));
+        }
+        output.add(root.val);
+        if(root.right != null)
+        {
+            output.addAll(inorderTraversalRecursion(root.right));
+        }
+
+        return output;
+    }
+
+
 
 }

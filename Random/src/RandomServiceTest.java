@@ -1,6 +1,9 @@
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 
 public class RandomServiceTest {
@@ -36,5 +39,16 @@ public class RandomServiceTest {
         Assert.assertFalse(actualOutput);
     }
 
+    @Test
+    public void inorderTraversalRecursion_True() {
+
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+
+        List<Integer> expectedOutput = new ArrayList<>(Arrays.asList(2, 1, 3));
+        var actualOutput = _randomService.inorderTraversalRecursion(root);
+        Assert.assertEquals(expectedOutput, actualOutput);
+    }
 
 }
