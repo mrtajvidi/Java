@@ -1,5 +1,6 @@
 import java.net.Inet4Address;
 import java.util.*;
+import java.util.concurrent.DelayQueue;
 
 public class Main {
 
@@ -176,7 +177,14 @@ public class Main {
         }
 
 
-        // Deqeu
+        // ArrayDeqeu
+        Deque<String> animals = new ArrayDeque<>();
+
+        animals.push("donkey");
+        animals.push("Dog");
+        animals.push("horse");
+
+
 
 
 

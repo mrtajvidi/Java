@@ -51,4 +51,34 @@ public class RandomServiceTest {
         Assert.assertEquals(expectedOutput, actualOutput);
     }
 
+    @Test
+    public void twoSum_True() {
+
+        int[] input = {2,7,11,15};
+        Integer target = 9;
+        int[] expectedOutput = {0 , 1};
+        int[] actualOutput = _randomService.twoSum(input, target);
+        var actualString = Arrays.toString(actualOutput);
+        var expectedString = Arrays.toString(expectedOutput);
+        Assert.assertEquals(expectedString, actualString);
+    }
+
+    @Test
+    public void groupAnagrams_True() {
+        String[] input = {"eat", "tea", "tan", "ate", "nat", "bat"};
+        ArrayList<List<String>> expectedOutput = new ArrayList<List<String>>() {
+            {
+                add(new ArrayList<>(List.of("eat","tea","ate")));
+                add(new ArrayList<>(List.of("bat")));
+                add(new ArrayList<>(List.of("tan","nat")));
+            }
+        };
+        List<List<String>> actualOutput = _randomService.groupAnagrams(input);
+        var actualString = Arrays.toString(actualOutput.toArray());
+        var expectedString = Arrays.toString(expectedOutput.toArray());
+        Assert.assertEquals(expectedString, actualString);
+    }
+
+
+
 }

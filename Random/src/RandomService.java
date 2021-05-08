@@ -48,7 +48,7 @@ public class RandomService {
 
         if ((p == null && q != null) || (p != null && q == null)) return false;
 
-       // Deque<TreeNode> queueP = new <>();
+        // Deque<TreeNode> queueP = new <>();
 
         if (p.val == q.val) {
             return isSameTreeRecursion(p.left, q.left) && isSameTreeRecursion(p.right, q.right);
@@ -60,24 +60,55 @@ public class RandomService {
     public List<Integer> inorderTraversalRecursion(TreeNode root) {
         List<Integer> output = new ArrayList<Integer>();
 
-        if (root == null)
-        {
+        if (root == null) {
             return output;
         }
 
-        if (root.left != null)
-        {
+        if (root.left != null) {
             output.addAll(inorderTraversalRecursion(root.left));
         }
         output.add(root.val);
-        if(root.right != null)
-        {
+        if (root.right != null) {
             output.addAll(inorderTraversalRecursion(root.right));
         }
 
         return output;
     }
 
+    public int[] twoSum(int[] nums, int target) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            int complement = target - nums[i];
+            if (map.containsKey(complement)) {
+                return new int[]{map.get(complement), i};
+            }
+            map.put(nums[i], i);
+        }
+        throw new IllegalArgumentException("No two sum solution");
+    }
 
+    public List<List<String>> groupAnagrams(String[] strs) {
+        if (strs.length == 0) return new ArrayList<>();
+
+        Map<String, List> ans = new HashMap<>();
+
+        for (String item : strs) {
+            char[] charArray = item.toCharArray();
+            Arrays.sort(charArray);
+            String key = String.valueOf(charArray);
+
+            if (!ans.containsKey(key)) {
+                ans.put(key, new ArrayList<String>() {
+                    {
+                        add(item);
+                    }
+                });
+            } else {
+                ans.get(key).add(item);
+            }
+        }
+
+        return new ArrayList(ans.values());
+    }
 
 }
