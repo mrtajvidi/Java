@@ -79,6 +79,40 @@ public class RandomServiceTest {
         Assert.assertEquals(expectedString, actualString);
     }
 
+    @Test
+    public void isPalindrome_True() {
+        String input = "A man, a plan, a canal: Panama";
+        boolean result = _randomService.isPalindrome(input);
+        Assert.assertTrue(result);
+    }
+
+
+    @Test
+    public void isPalindrome_False() {
+        String input = "A man, a plan, a canal: Panamat";
+        boolean result = _randomService.isPalindrome(input);
+        Assert.assertFalse(result);
+    }
+
+    @Test
+    public void productExceptSelf_True() {
+        int[] input = {1,2,3,4};
+        int[] expectedOutput = {24,12,8,6};
+        int[] result = _randomService.productExceptSelf(input);
+        var actualString = Arrays.toString(result);
+        var expectedString = Arrays.toString(expectedOutput);
+        Assert.assertEquals(expectedString, actualString);
+    }
+
+    @Test
+    public void productExceptSelf_True2() {
+        int[] input = {-1,1,0,-3,3};
+        int[] expectedOutput = {0,0,9,0,0};
+        int[] result = _randomService.productExceptSelf(input);
+        var actualString = Arrays.toString(result);
+        var expectedString = Arrays.toString(expectedOutput);
+        Assert.assertEquals(expectedString, actualString);
+    }
 
 
 }

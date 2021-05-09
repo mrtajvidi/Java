@@ -111,4 +111,54 @@ public class RandomService {
         return new ArrayList(ans.values());
     }
 
+
+    public static boolean isPalindrome(String s) {
+        int headIndex = 0;
+        int tailIndex = s.length() - 1;
+        char[] chars = s.toCharArray();
+
+        while (headIndex < tailIndex)
+        {
+            if (!Character.isLetterOrDigit(chars[headIndex]))
+            {
+                headIndex++;
+                continue;
+            }
+
+            if (!Character.isLetterOrDigit(chars[tailIndex]))
+            {
+                tailIndex--;
+                continue;
+            }
+
+            if (Character.toLowerCase(chars[headIndex]) != Character.toLowerCase(chars[tailIndex]))
+            {
+                return false;
+            }
+            headIndex++;
+            tailIndex--;
+        }
+        return true;
+    }
+
+
+    public int[] productExceptSelf(int[] nums) {
+
+        int[] output = new int[nums.length];
+
+        output[0]  = 1;
+        for (int i = 1; i < nums.length; i++)
+        {
+            output[i] = output[i - 1] * nums[i - 1];
+        }
+
+        int R = 1;
+        for (int j = nums.length - 1; j >= 0; j--)
+        {
+            output[j] = R * output[j];
+            R *= nums[j];
+        }
+        return output;
+    }
+
 }
