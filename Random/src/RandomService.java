@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Deque;
 import java.util.*;
 
 
@@ -117,22 +116,18 @@ public class RandomService {
         int tailIndex = s.length() - 1;
         char[] chars = s.toCharArray();
 
-        while (headIndex < tailIndex)
-        {
-            if (!Character.isLetterOrDigit(chars[headIndex]))
-            {
+        while (headIndex < tailIndex) {
+            if (!Character.isLetterOrDigit(chars[headIndex])) {
                 headIndex++;
                 continue;
             }
 
-            if (!Character.isLetterOrDigit(chars[tailIndex]))
-            {
+            if (!Character.isLetterOrDigit(chars[tailIndex])) {
                 tailIndex--;
                 continue;
             }
 
-            if (Character.toLowerCase(chars[headIndex]) != Character.toLowerCase(chars[tailIndex]))
-            {
+            if (Character.toLowerCase(chars[headIndex]) != Character.toLowerCase(chars[tailIndex])) {
                 return false;
             }
             headIndex++;
@@ -146,19 +141,69 @@ public class RandomService {
 
         int[] output = new int[nums.length];
 
-        output[0]  = 1;
-        for (int i = 1; i < nums.length; i++)
-        {
+        output[0] = 1;
+        for (int i = 1; i < nums.length; i++) {
             output[i] = output[i - 1] * nums[i - 1];
         }
 
         int R = 1;
-        for (int j = nums.length - 1; j >= 0; j--)
-        {
+        for (int j = nums.length - 1; j >= 0; j--) {
             output[j] = R * output[j];
             R *= nums[j];
         }
         return output;
+    }
+
+    public int missingNumber(int[] nums) {
+        int l = nums.length;
+        int expectedSum = l * (l + 1) / 2;
+
+        for (int i = 0; i < l; i++) {
+            expectedSum -= nums[i];
+        }
+        return expectedSum;
+    }
+
+    public int firstUniqChar(String s)
+    {
+        HashMap<Character, Integer> hashMap = new HashMap<>();
+
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            hashMap.put(c, hashMap.getOrDefault(c, 0) + 1);
+        }
+
+        for (int i = 0; i < s.length(); i++) {
+            if (hashMap.get(s.charAt(i)) == 1)
+                return i;
+        }
+        return -1;
+    }
+
+    public int[] sortedSquares(int[] nums) {
+        int n = nums.length;
+        int[] output = new int[n];
+        int left = 0;
+        int right = n - 1;
+
+        int square = 0;
+        for (int i = n -1; i >= 0; i--)
+        {
+            if (Math.abs(nums[left]) < Math.abs(nums[right]))
+            {
+                square = nums[right];
+                right--;
+            }
+            else
+            {
+                square = nums[left];
+                left++;
+            }
+
+            output[i] = square * square;
+        }
+        return output;
+
     }
 
 }

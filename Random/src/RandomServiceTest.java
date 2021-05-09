@@ -114,5 +114,61 @@ public class RandomServiceTest {
         Assert.assertEquals(expectedString, actualString);
     }
 
+    @Test
+    public void missingNumber_True() {
+        int[] input = {3,0,1};
+        int expectedOutput = 2;
+        int actualOutput = _randomService.missingNumber(input);
+        Assert.assertEquals(expectedOutput, actualOutput);
+    }
 
+    @Test
+    public void missingNumber_True2() {
+        int[] input = {9,6,4,2,3,5,7,0,1};
+        int expectedOutput = 8;
+        int actualOutput = _randomService.missingNumber(input);
+        Assert.assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void missingNumber_True3() {
+        int[] input = {0,1};
+        int expectedOutput = 2;
+        int actualOutput = _randomService.missingNumber(input);
+        Assert.assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void firstUniqChar_True1() {
+        String input = "leetcode";
+        int expectedOutput = 0;
+        int actualOutput = _randomService.firstUniqChar(input);
+        Assert.assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void firstUniqChar_True2() {
+        String input = "loveleetcode";
+        int expectedOutput = 2;
+        int actualOutput = _randomService.firstUniqChar(input);
+        Assert.assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void firstUniqChar_True3() {
+        String input = "aabb";
+        int expectedOutput = -1;
+        int actualOutput = _randomService.firstUniqChar(input);
+        Assert.assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void sortedSquares_True() {
+        int[] input = {-4,-1,0,3,10};
+        int[] expectedOutput = {0,1,9,16,100};
+        int[] actualOutput = _randomService.sortedSquares(input);
+        String actualOutputString = Arrays.toString(actualOutput);
+        String expectedOutputString = Arrays.toString(expectedOutput);
+        Assert.assertEquals(expectedOutputString, actualOutputString);
+    }
 }
