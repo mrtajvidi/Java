@@ -198,4 +198,34 @@ public class RandomServiceTest {
         String expectedOutputString = Arrays.toString(expectedOutput);
         Assert.assertEquals(expectedOutputString, actualOutputString);
     }
+
+
+    @Test
+    public void matchingPairs_True1() {
+        String input1 = "abcde";
+        String input2 = "adcbe";
+        int expectedOutput = 5;
+        int actualOutput = _randomService.matchingPairs(input1, input2);
+        Assert.assertEquals(expectedOutput, actualOutput);
+    }
+
+
+    @Test
+    public void matchingPairs_True2() {
+        String input1 = "abcdef";
+        String input2 = "adcfeg";
+        int expectedOutput = 3;
+        int actualOutput = _randomService.matchingPairs(input1, input2);
+        Assert.assertEquals(expectedOutput, actualOutput);
+    }
+
+
+    @Test
+    public void matchingPairs_True3() {
+        String input1 = "mno";
+        String input2 = "mno";
+        int expectedOutput = 1;
+        int actualOutput = _randomService.matchingPairs(input1, input2);
+        Assert.assertEquals(expectedOutput, actualOutput);
+    }
 }

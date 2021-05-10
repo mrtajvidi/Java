@@ -75,7 +75,7 @@ public class RandomService {
         return output;
     }
 
-    public List<Integer> inorderTraversalIteration(TreeNode root){
+    public List<Integer> inorderTraversalIteration(TreeNode root) {
         if (root == null) return new ArrayList<>();
 
         Deque<TreeNode> stack = new ArrayDeque<>();
@@ -83,9 +83,8 @@ public class RandomService {
 
         TreeNode currentNode = root;
 
-        while (currentNode != null || !stack.isEmpty())
-        {
-            while(currentNode != null) {
+        while (currentNode != null || !stack.isEmpty()) {
+            while (currentNode != null) {
                 stack.push(currentNode);
                 currentNode = currentNode.left;
             }
@@ -290,6 +289,35 @@ public class RandomService {
         return dummyHead.next;
     }
 
+    public int matchingPairs(String s, String t) {
+        int countOfMatchedPairs = 0;
+        int countOfMismatches = 0;
+        HashMap<Character, ArrayList<Character>> mismatchedPairs = new HashMap<>();
 
+        int countOfSwaps = 0;
+        for (int i = 0; i < s.length(); i++) {
+            char charAtS = s.charAt(i);
+            char charAtT = t.charAt(i);
+
+            if (charAtS == charAtT) {
+                countOfMatchedPairs++;
+                continue;
+            } else if (countOfSwaps == 0) {
+                countOfMismatches++;
+                if (mismatchedPairs.containsKey(charAtT)) {
+                    ArrayList<Character> value = mismatchedPairs.get(charAtT);
+                    if (value.contains(charAtS)) {
+                        countOfSwaps = 1;
+                        countOfMatchedPairs += 2;
+                    }
+                } else {
+                    ArrayList<Character> value = mismatchedPairs.getOrDefault(charAtS, new ArrayList<>());
+                    value.add(charAtT);
+                    mismatchedPairs.put(charAtS, value);
+                }
+            }
+        }
+        return ( countOfMismatches > 0 ) ? countOfMatchedPairs : countOfMatchedPairs - 2;
+    }
 
 }
