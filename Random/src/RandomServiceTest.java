@@ -52,6 +52,33 @@ public class RandomServiceTest {
     }
 
     @Test
+    public void inorderTraversalIteration_True() {
+
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+
+        List<Integer> expectedOutput = new ArrayList<>(Arrays.asList(2, 1, 3));
+        var actualOutput = _randomService.inorderTraversalIteration(root);
+        Assert.assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void preorderTraversalRecursion_True() {
+
+        TreeNode root = new TreeNode(1);
+        TreeNode node2 = new TreeNode(2);
+        root.right = node2;
+        TreeNode node3 = new TreeNode(3);
+        node2.left = node3;
+
+        List<Integer> expectedOutput = new ArrayList<>(Arrays.asList(1,2,3));
+        var actualOutput = _randomService.preorderTraversal(root);
+        Assert.assertEquals(expectedOutput, actualOutput);
+    }
+
+
+    @Test
     public void twoSum_True() {
 
         int[] input = {2,7,11,15};

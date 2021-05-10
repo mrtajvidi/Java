@@ -8,6 +8,7 @@ public class Main {
 	// write your code here
         System.out.println("Hi. this is my project.");
 
+        /*
         // Arrays
         String[] input = new String[100];
         int[] input2 = {12, 3, 4, 5};
@@ -90,7 +91,7 @@ public class Main {
         System.out.println("Array list as string is: " + newListOfIntegers.toString());
 
         System.out.println("the size of Array list is: " + newListOfIntegers.size());
-
+            */
 
 
         /*size()	        Returns the length of the arraylist.
@@ -102,6 +103,7 @@ public class Main {
         indexOf()	        Searches a specified element in an arraylist and returns the index of the element.
         */
 
+        /*
         // Stack for stack
         Stack<Integer> stacks = new Stack<>();
         stacks.push(12);
@@ -183,8 +185,22 @@ public class Main {
         animals.push("donkey");
         animals.push("Dog");
         animals.push("horse");
+        */
+
+        // Stack
+        Deque<Integer>  stack = new ArrayDeque();
+        stack.push(1);
+        stack.push(12);
+        stack.push(5);
+
+        System.out.println("first element of the stack with pop is: " + stack.pop());
 
 
+        Deque<Integer>  queue = new ArrayDeque();
+        queue.offer(1);
+        queue.offer(12);
+        queue.offer(5);
+        System.out.println("first element of the queue with poll is: " + queue.poll());
 
 
 

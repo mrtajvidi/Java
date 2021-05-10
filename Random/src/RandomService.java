@@ -1,3 +1,5 @@
+import com.sun.source.doctree.LinkTree;
+
 import java.util.ArrayList;
 import java.util.*;
 
@@ -55,7 +57,6 @@ public class RandomService {
         return false;
     }
 
-
     public List<Integer> inorderTraversalRecursion(TreeNode root) {
         List<Integer> output = new ArrayList<Integer>();
 
@@ -72,6 +73,74 @@ public class RandomService {
         }
 
         return output;
+    }
+
+    public List<Integer> inorderTraversalIteration(TreeNode root){
+        if (root == null) return new ArrayList<>();
+
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        ArrayList<Integer> output = new ArrayList<>();
+
+        TreeNode currentNode = root;
+
+        while (currentNode != null || !stack.isEmpty())
+        {
+            while(currentNode != null) {
+                stack.push(currentNode);
+                currentNode = currentNode.left;
+            }
+
+            currentNode = stack.pop();
+            output.add(currentNode.val);
+            currentNode = currentNode.right;
+        }
+        return output;
+    }
+
+    public List<Integer> preorderTraversal(TreeNode root) {
+        if (root == null) return new ArrayList<>();
+
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        ArrayList<Integer> output = new ArrayList<>();
+        stack.push(root);
+
+        while (!stack.isEmpty()) {
+            var currNode = stack.pop();
+            output.add(currNode.val);
+
+            if (currNode.right != null) {
+                stack.push(currNode.right);
+            }
+
+            if (currNode.left != null) {
+                stack.push(currNode.left);
+            }
+        }
+        return output;
+    }
+
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        if (root == null) return new ArrayList<>();
+        Deque<TreeNode> queue = new ArrayDeque<>();
+        List<List<Integer>> levels = new ArrayList<>();
+        queue.offer(root);
+        int level = 0;
+
+        while (!queue.isEmpty()) {
+            levels.add(new ArrayList<>());
+            int level_length = queue.size();
+            for (int i = 0; i < level_length; ++i) {
+
+                var currNode = queue.poll();
+                levels.get(level).add(currNode.val);
+
+                if (currNode.left != null) queue.offer(currNode.left);
+                if (currNode.right != null) queue.offer(currNode.right);
+            }
+            level++;
+        }
+        return levels;
+
     }
 
     public int[] twoSum(int[] nums, int target) {
@@ -110,7 +179,6 @@ public class RandomService {
         return new ArrayList(ans.values());
     }
 
-
     public static boolean isPalindrome(String s) {
         int headIndex = 0;
         int tailIndex = s.length() - 1;
@@ -135,7 +203,6 @@ public class RandomService {
         }
         return true;
     }
-
 
     public int[] productExceptSelf(int[] nums) {
 
@@ -164,8 +231,7 @@ public class RandomService {
         return expectedSum;
     }
 
-    public int firstUniqChar(String s)
-    {
+    public int firstUniqChar(String s) {
         HashMap<Character, Integer> hashMap = new HashMap<>();
 
         for (int i = 0; i < s.length(); i++) {
@@ -187,15 +253,11 @@ public class RandomService {
         int right = n - 1;
 
         int square = 0;
-        for (int i = n -1; i >= 0; i--)
-        {
-            if (Math.abs(nums[left]) < Math.abs(nums[right]))
-            {
+        for (int i = n - 1; i >= 0; i--) {
+            if (Math.abs(nums[left]) < Math.abs(nums[right])) {
                 square = nums[right];
                 right--;
-            }
-            else
-            {
+            } else {
                 square = nums[left];
                 left++;
             }
@@ -203,7 +265,31 @@ public class RandomService {
             output[i] = square * square;
         }
         return output;
-
     }
+
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode dummyHead = new ListNode(0);
+        ListNode p = l1, q = l2, curr = dummyHead;
+        int carry = 0;
+
+        while (p != null || q != null) {
+            int x = (p != null) ? p.val : 0;
+            int Y = (q != null) ? q.val : 0;
+
+            int sum = x + Y + carry;
+            carry = sum / 10;
+            curr.next = new ListNode(sum % 10);
+            curr = curr.next;
+            if (p != null) p = p.next;
+            if (q != null) q = q.next;
+        }
+
+        if (carry > 0) {
+            curr.next = new ListNode(carry);
+        }
+        return dummyHead.next;
+    }
+
+
 
 }
