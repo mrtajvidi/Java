@@ -228,4 +228,25 @@ public class RandomServiceTest {
         int actualOutput = _randomService.matchingPairs(input1, input2);
         Assert.assertEquals(expectedOutput, actualOutput);
     }
+
+
+    @Test
+    public void minLengthSubstring_True1() {
+        String input1 = "dcbefebce";
+        String input2 = "fd";
+        int expectedOutput = 5;
+        int actualOutput = _randomService.minLengthSubstring(input1, input2);
+        Assert.assertEquals(expectedOutput, actualOutput);
+    }
+
+
+    @Test
+    public void minLengthSubstring_True2() {
+        String input1 = "bfbeadbcbcbfeaaeefcddcccbbbfaaafdbebedddf";
+        String input2 = "cbccfafebccdccebdd";
+        int expectedOutput = -1;
+        int actualOutput = _randomService.minLengthSubstring(input1, input2);
+        Assert.assertEquals(expectedOutput, actualOutput);
+    }
+
 }

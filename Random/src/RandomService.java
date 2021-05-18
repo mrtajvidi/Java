@@ -320,4 +320,54 @@ public class RandomService {
         return ( countOfMismatches > 0 ) ? countOfMatchedPairs : countOfMatchedPairs - 2;
     }
 
+    public int minLengthSubstring(String s, String t) {
+
+        // Write your code here
+        HashMap<Character, Integer> charIndexes = new HashMap<>();
+
+        for (int i = 0; i < t.length(); i++)
+        {
+            char thisChar = t.charAt(i);
+            if (charIndexes.containsKey(thisChar))
+            {
+                charIndexes.replace(thisChar, charIndexes.get(thisChar) + 1);
+            }
+            else
+            {
+                charIndexes.put(thisChar, 1);
+            }
+        }
+
+        int minIndex = Integer.MIN_VALUE;
+        int maxIndex = Integer.MIN_VALUE;
+
+        for (int j = 0; j < s.length(); j++)
+        {
+            Character theOtherChar = s.charAt(j);
+            if (charIndexes.containsKey(theOtherChar) && charIndexes.get(theOtherChar) > 0)
+            {
+                if (minIndex == Integer.MIN_VALUE)
+                {
+                    minIndex = j;
+                }
+
+                if (j > maxIndex)
+                {
+                    maxIndex = j;
+                }
+                charIndexes.replace(theOtherChar, charIndexes.get(theOtherChar) - 1);
+            }
+        }
+
+        for (Integer item : charIndexes.values())
+        {
+            if (item > 0)
+                return -1;
+        }
+
+        if (maxIndex == Integer.MIN_VALUE || minIndex == Integer.MIN_VALUE) return -1;
+
+        return maxIndex - minIndex + 1;
+    }
+
 }
