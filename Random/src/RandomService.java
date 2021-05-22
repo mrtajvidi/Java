@@ -370,4 +370,54 @@ public class RandomService {
         return maxIndex - minIndex + 1;
     }
 
+    public int tripleSteps(int input)
+    {
+        Integer[] memo = new Integer[input + 1];
+        Arrays.fill(memo, 0);
+        return tripleStepsHelper(input, memo);
+    }
+
+    private int tripleStepsHelper(int n, Integer[] memo)
+    {
+        if ( n < 0 ) return 0;
+        else if (n == 0)
+        {
+            return 1;
+        }
+        else if (memo[n] != 0)
+        {
+            return memo[n];
+        }
+        else {
+            memo[n] = tripleStepsHelper(n - 3, memo) + tripleStepsHelper(n - 2, memo) + tripleStepsHelper(n - 1, memo);
+            return memo[n];
+        }
+    }
+
+    public ArrayList<ArrayList<Integer>> powerSet(ArrayList<Integer> set, int index)
+    {
+        ArrayList<ArrayList<Integer>> allSubsets;
+
+        if (set.size() == index)
+        {
+            allSubsets = new ArrayList<ArrayList<Integer>>();
+            allSubsets.add(new ArrayList<Integer>());
+        } else {
+            allSubsets = powerSet(set, index + 1);
+            int item = set.get(index);
+            ArrayList<ArrayList<Integer>> moreSubset = new ArrayList<>();
+
+            for (ArrayList<Integer> subset : allSubsets) {
+                ArrayList<Integer> newSubset = new ArrayList<>();
+                newSubset.addAll(subset);
+                newSubset.add(item);
+                moreSubset.add(newSubset);
+            }
+
+            allSubsets.addAll(moreSubset);
+        }
+        return allSubsets;
+    }
+    
+
 }
