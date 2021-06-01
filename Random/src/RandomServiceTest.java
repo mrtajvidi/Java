@@ -72,7 +72,7 @@ public class RandomServiceTest {
         TreeNode node3 = new TreeNode(3);
         node2.left = node3;
 
-        List<Integer> expectedOutput = new ArrayList<>(Arrays.asList(1,2,3));
+        List<Integer> expectedOutput = new ArrayList<>(Arrays.asList(1, 2, 3));
         var actualOutput = _randomService.preorderTraversal(root);
         Assert.assertEquals(expectedOutput, actualOutput);
     }
@@ -81,9 +81,9 @@ public class RandomServiceTest {
     @Test
     public void twoSum_True() {
 
-        int[] input = {2,7,11,15};
+        int[] input = {2, 7, 11, 15};
         Integer target = 9;
-        int[] expectedOutput = {0 , 1};
+        int[] expectedOutput = {0, 1};
         int[] actualOutput = _randomService.twoSum(input, target);
         var actualString = Arrays.toString(actualOutput);
         var expectedString = Arrays.toString(expectedOutput);
@@ -95,9 +95,9 @@ public class RandomServiceTest {
         String[] input = {"eat", "tea", "tan", "ate", "nat", "bat"};
         ArrayList<List<String>> expectedOutput = new ArrayList<List<String>>() {
             {
-                add(new ArrayList<>(List.of("eat","tea","ate")));
+                add(new ArrayList<>(List.of("eat", "tea", "ate")));
                 add(new ArrayList<>(List.of("bat")));
-                add(new ArrayList<>(List.of("tan","nat")));
+                add(new ArrayList<>(List.of("tan", "nat")));
             }
         };
         List<List<String>> actualOutput = _randomService.groupAnagrams(input);
@@ -123,8 +123,8 @@ public class RandomServiceTest {
 
     @Test
     public void productExceptSelf_True() {
-        int[] input = {1,2,3,4};
-        int[] expectedOutput = {24,12,8,6};
+        int[] input = {1, 2, 3, 4};
+        int[] expectedOutput = {24, 12, 8, 6};
         int[] result = _randomService.productExceptSelf(input);
         var actualString = Arrays.toString(result);
         var expectedString = Arrays.toString(expectedOutput);
@@ -133,8 +133,8 @@ public class RandomServiceTest {
 
     @Test
     public void productExceptSelf_True2() {
-        int[] input = {-1,1,0,-3,3};
-        int[] expectedOutput = {0,0,9,0,0};
+        int[] input = {-1, 1, 0, -3, 3};
+        int[] expectedOutput = {0, 0, 9, 0, 0};
         int[] result = _randomService.productExceptSelf(input);
         var actualString = Arrays.toString(result);
         var expectedString = Arrays.toString(expectedOutput);
@@ -143,7 +143,7 @@ public class RandomServiceTest {
 
     @Test
     public void missingNumber_True() {
-        int[] input = {3,0,1};
+        int[] input = {3, 0, 1};
         int expectedOutput = 2;
         int actualOutput = _randomService.missingNumber(input);
         Assert.assertEquals(expectedOutput, actualOutput);
@@ -151,7 +151,7 @@ public class RandomServiceTest {
 
     @Test
     public void missingNumber_True2() {
-        int[] input = {9,6,4,2,3,5,7,0,1};
+        int[] input = {9, 6, 4, 2, 3, 5, 7, 0, 1};
         int expectedOutput = 8;
         int actualOutput = _randomService.missingNumber(input);
         Assert.assertEquals(expectedOutput, actualOutput);
@@ -159,7 +159,7 @@ public class RandomServiceTest {
 
     @Test
     public void missingNumber_True3() {
-        int[] input = {0,1};
+        int[] input = {0, 1};
         int expectedOutput = 2;
         int actualOutput = _randomService.missingNumber(input);
         Assert.assertEquals(expectedOutput, actualOutput);
@@ -191,8 +191,8 @@ public class RandomServiceTest {
 
     @Test
     public void sortedSquares_True() {
-        int[] input = {-4,-1,0,3,10};
-        int[] expectedOutput = {0,1,9,16,100};
+        int[] input = {-4, -1, 0, 3, 10};
+        int[] expectedOutput = {0, 1, 9, 16, 100};
         int[] actualOutput = _randomService.sortedSquares(input);
         String actualOutputString = Arrays.toString(actualOutput);
         String expectedOutputString = Arrays.toString(expectedOutput);
@@ -249,5 +249,27 @@ public class RandomServiceTest {
         Assert.assertEquals(expectedOutput, actualOutput);
     }
 
+    @Test
+    public void getPermutations_Case1() {
+        String input1 = "a";
+        ArrayList<String> expectedOutput = new ArrayList<>() {
+            {
+                add("a");
+            }
+        };
+
+        ArrayList<String> actualOutput = _randomService.getPermutations(input1);
+        Assert.assertEquals(expectedOutput, actualOutput);
+    }
+
+
+    @Test
+    public void minOverallAwkwardness_True() {
+       // int[] input = {5, 10, 6, 8};
+        int[] input = {1, 2, 5, 3, 7};
+        int expectedOutput = 4;
+        int actualOutput = _randomService.minOverallAwkwardness(input);
+        Assert.assertEquals(expectedOutput, actualOutput);
+    }
 
 }

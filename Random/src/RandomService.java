@@ -317,7 +317,7 @@ public class RandomService {
                 }
             }
         }
-        return ( countOfMismatches > 0 ) ? countOfMatchedPairs : countOfMatchedPairs - 2;
+        return (countOfMismatches > 0) ? countOfMatchedPairs : countOfMatchedPairs - 2;
     }
 
     public int minLengthSubstring(String s, String t) {
@@ -325,15 +325,11 @@ public class RandomService {
         // Write your code here
         HashMap<Character, Integer> charIndexes = new HashMap<>();
 
-        for (int i = 0; i < t.length(); i++)
-        {
+        for (int i = 0; i < t.length(); i++) {
             char thisChar = t.charAt(i);
-            if (charIndexes.containsKey(thisChar))
-            {
+            if (charIndexes.containsKey(thisChar)) {
                 charIndexes.replace(thisChar, charIndexes.get(thisChar) + 1);
-            }
-            else
-            {
+            } else {
                 charIndexes.put(thisChar, 1);
             }
         }
@@ -341,26 +337,21 @@ public class RandomService {
         int minIndex = Integer.MIN_VALUE;
         int maxIndex = Integer.MIN_VALUE;
 
-        for (int j = 0; j < s.length(); j++)
-        {
+        for (int j = 0; j < s.length(); j++) {
             Character theOtherChar = s.charAt(j);
-            if (charIndexes.containsKey(theOtherChar) && charIndexes.get(theOtherChar) > 0)
-            {
-                if (minIndex == Integer.MIN_VALUE)
-                {
+            if (charIndexes.containsKey(theOtherChar) && charIndexes.get(theOtherChar) > 0) {
+                if (minIndex == Integer.MIN_VALUE) {
                     minIndex = j;
                 }
 
-                if (j > maxIndex)
-                {
+                if (j > maxIndex) {
                     maxIndex = j;
                 }
                 charIndexes.replace(theOtherChar, charIndexes.get(theOtherChar) - 1);
             }
         }
 
-        for (Integer item : charIndexes.values())
-        {
+        for (Integer item : charIndexes.values()) {
             if (item > 0)
                 return -1;
         }
@@ -370,36 +361,28 @@ public class RandomService {
         return maxIndex - minIndex + 1;
     }
 
-    public int tripleSteps(int input)
-    {
+    public int tripleSteps(int input) {
         Integer[] memo = new Integer[input + 1];
         Arrays.fill(memo, 0);
         return tripleStepsHelper(input, memo);
     }
 
-    private int tripleStepsHelper(int n, Integer[] memo)
-    {
-        if ( n < 0 ) return 0;
-        else if (n == 0)
-        {
+    private int tripleStepsHelper(int n, Integer[] memo) {
+        if (n < 0) return 0;
+        else if (n == 0) {
             return 1;
-        }
-        else if (memo[n] != 0)
-        {
+        } else if (memo[n] != 0) {
             return memo[n];
-        }
-        else {
+        } else {
             memo[n] = tripleStepsHelper(n - 3, memo) + tripleStepsHelper(n - 2, memo) + tripleStepsHelper(n - 1, memo);
             return memo[n];
         }
     }
 
-    public ArrayList<ArrayList<Integer>> powerSet(ArrayList<Integer> set, int index)
-    {
+    public ArrayList<ArrayList<Integer>> powerSet(ArrayList<Integer> set, int index) {
         ArrayList<ArrayList<Integer>> allSubsets;
 
-        if (set.size() == index)
-        {
+        if (set.size() == index) {
             allSubsets = new ArrayList<ArrayList<Integer>>();
             allSubsets.add(new ArrayList<Integer>());
         } else {
@@ -418,6 +401,47 @@ public class RandomService {
         }
         return allSubsets;
     }
-    
+
+    public ArrayList<String> getPermutations(String input) {
+        if (input == null) return null;
+
+        ArrayList<String> permutations = new ArrayList<>();
+        if (input.length() == 0) {
+            permutations.add("");
+            return permutations;
+        }
+
+        var first = input.charAt(0);
+        var rest = input.substring(1);
+        ArrayList<String> words = getPermutations(rest);
+        for (String word : words) {
+            for (int i = 0; i <= word.length(); i++) {
+                String s = insertAtThisIndex(word, first, i);
+                permutations.add(s);
+            }
+        }
+        return permutations;
+    }
+
+    private String insertAtThisIndex(String word, char c, int i) {
+        String start = word.substring(0, i);
+        String end = word.substring(i);
+        return start + c + end;
+    }
+
+    public int minOverallAwkwardness(int[] arr) {
+        Arrays.sort(arr);
+        int diff = arr[1] - arr[0];
+
+        for(int i = 2; i < arr.length; i+=2){
+            diff = Math.max(diff, arr[i] - arr[i - 2]);
+        }
+        for(int i = 3; i < arr.length; i+=2){
+            diff = Math.max(diff, arr[i] - arr[i - 2]);
+        }
+
+        return Math.max(diff, arr[arr.length - 1] - arr[arr.length - 2]);
+
+    }
 
 }
